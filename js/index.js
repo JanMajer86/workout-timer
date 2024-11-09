@@ -10,13 +10,7 @@ startButton.addEventListener("click", () => {
 	startTimer();
 });
 
-// startButton.addEventListener("click", () => {
-// 	intervalId = setInterval(() => {
-// 		stopWatch(exercices);
-// 	}, 1000);
-// });
-
 stopButton.addEventListener("click", () => {
-	// stopTimer();
+	stopTimer();
 	initTimer();
 });

@@ -1,6 +1,12 @@
-import { blink, renderProgressBar } from "./visuals.js";
+import {
+	blink,
+	renderProgressBar,
+	switchBars,
+	resetProgressBar,
+} from "./visuals.js";
 import { audioElements, playAudio } from "./audio.js";
 import { exercices } from "./data.js";
+// import { bar } from "./visuals.js";
 
 const timerEl = document.getElementById("timer");
 const messageEl = document.getElementById("message");
@@ -14,13 +20,16 @@ let initialTime;
 let timeLeft;
 let isRunning;
 
+// bar.classList.add("notransition");
+
 export const initTimer = () => {
 	i = 0;
 	initialTime = prepareTime;
 	timeLeft = initialTime;
 	messageEl.innerHTML = "";
 	timerEl.innerHTML = "";
-	stopTimer();
+	isRunning = false;
+	renderProgressBar(timeLeft, initialTime);
 };
 
 export function startTimer() {
@@ -48,12 +57,12 @@ export function startTimer() {
 			} else {
 				timeLeft = exerciceTime;
 			}
-			initialTime = timeLeft;
 
+			initialTime = timeLeft;
+			setTimeout(switchBars(), 1000);
 			// ukončení běhu
 			if (i > exercices.length - 1) {
 				initTimer();
-				// clearInterval(intervalId);
 			}
 		}
 		console.log(isRunning);
@@ -67,35 +76,6 @@ export function setIsRunning() {
 }
 
 export function stopTimer() {
-	isRunning = false;
+	// isRunning = false;
+	resetProgressBar();
 }
-
-// export function stopWatch(arr) {
-// 	messageEl.innerHTML = arr[i];
-// 	timerEl.innerHTML = timeLeft;
-// 	timeLeft--;
-// 	renderProgressBar(timeLeft, initialTime);
-
-// 	if (timeLeft === 0) {
-// 		playAudio(audioElements[1]);
-// 		blink(timerEl);
-// 	} else if (timeLeft < 3) {
-// 		playAudio(audioElements[0]);
-// 		blink(timerEl);
-// 	}
-
-// 	if (timeLeft <= 0) {
-// 		i++;
-// 		if (arr[i] === "break") {
-// 			timeLeft = breakTime;
-// 		} else {
-// 			timeLeft = exerciceTime;
-// 		}
-// 		initialTime = timeLeft;
-
-// 		if (i > arr.length - 1) {
-// 			init();
-// 			clearInterval(intervalId);
-// 		}
-// 	}
-// }

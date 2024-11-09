@@ -9,6 +9,8 @@ const exercicesInput = [
 	"jumping jacks",
 ];
 
+// const exercicesInput = ["A"];
+
 const pause = "break";
 
 const interleave = (arr, thing) =>
