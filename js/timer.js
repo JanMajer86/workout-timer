@@ -24,39 +24,40 @@ export const initTimer = () => {
 };
 
 export function startTimer() {
-	messageEl.innerHTML = exercices[i];
-	timerEl.innerHTML = timeLeft;
-
-	timeLeft--;
-	renderProgressBar(timeLeft, initialTime);
-
-	if (timeLeft === 0) {
-		playAudio(audioElements[1]);
-		blink(timerEl);
-	} else if (timeLeft < 3) {
-		playAudio(audioElements[0]);
-		blink(timerEl);
-	}
-
-	if (timeLeft <= 0) {
-		// přejde na další cvik / pauzu
-		i++;
-		// nastavení délky dalšího cviku / pauzy
-		if (exercices[i] === "break") {
-			timeLeft = breakTime;
-		} else {
-			timeLeft = exerciceTime;
-		}
-		initialTime = timeLeft;
-
-		// ukončení běhu
-		if (i > exercices.length - 1) {
-			initTimer();
-			// clearInterval(intervalId);
-		}
-	}
-	console.log(isRunning);
 	if (isRunning) {
+		messageEl.innerHTML = exercices[i];
+		timerEl.innerHTML = timeLeft;
+
+		timeLeft--;
+		renderProgressBar(timeLeft, initialTime);
+
+		if (timeLeft === 0) {
+			playAudio(audioElements[1]);
+			blink(timerEl);
+		} else if (timeLeft < 3) {
+			playAudio(audioElements[0]);
+			blink(timerEl);
+		}
+
+		if (timeLeft <= 0) {
+			// přejde na další cvik / pauzu
+			i++;
+			// nastavení délky dalšího cviku / pauzy
+			if (exercices[i] === "break") {
+				timeLeft = breakTime;
+			} else {
+				timeLeft = exerciceTime;
+			}
+			initialTime = timeLeft;
+
+			// ukončení běhu
+			if (i > exercices.length - 1) {
+				initTimer();
+				// clearInterval(intervalId);
+			}
+		}
+		console.log(isRunning);
+
 		setTimeout(startTimer, 1000);
 	}
 }
