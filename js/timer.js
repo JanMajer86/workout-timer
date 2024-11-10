@@ -6,9 +6,9 @@ import { bar } from "./visuals.js";
 const timerEl = document.getElementById("timer");
 const messageEl = document.getElementById("message");
 
-const prepareTime = 10;
-const exerciceTime = 45;
-const breakTime = 15;
+const prepareTime = 5;
+const exerciceTime = 6;
+const breakTime = 3;
 
 let i;
 let initialTime;
@@ -24,14 +24,16 @@ export const initTimer = () => {
 	messageEl.innerHTML = "";
 	timerEl.innerHTML = "";
 	isRunning = false;
-	// renderProgressBar(timeLeft, initialTime);
+	bar.style.width = "0%";
+	bar.style.transition = "width 0s";
 };
 
 export function startTimer() {
 	if (isRunning) {
 		messageEl.innerHTML = exercices[i];
 		timerEl.innerHTML = timeLeft;
-
+		bar.style.width = "100%";
+		bar.style.transition = `width ${initialTime}s linear`;
 		timeLeft--;
 		// renderProgressBar(timeLeft, initialTime);
 
@@ -45,8 +47,6 @@ export function startTimer() {
 
 		if (timeLeft <= 0) {
 			// přejde na další cvik / pauzu
-			bar.style.width = "0%";
-			bar.style.transition = "width 0s";
 
 			i++;
 
@@ -56,12 +56,13 @@ export function startTimer() {
 			} else {
 				timeLeft = exerciceTime;
 			}
-
 			initialTime = timeLeft;
+
 			setTimeout(() => {
-				bar.style.width = "100%";
-				bar.style.transition = `width ${initialTime}s linear`;
-			}, 100);
+				bar.style.width = "0%";
+				bar.style.transition = "width 0s";
+			}, 950);
+
 			// ukončení běhu
 			if (i > exercices.length - 1) {
 				initTimer();
