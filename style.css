@@ -39,11 +39,11 @@ body {
 	width: 100%;
 	background-color: grey;
 }
-.my-progress {
+#my-progress {
 	width: 0%;
 	height: 1.8rem;
 	background-color: green;
-	transition: width 1s;
+	/* transition: width 1s; */
 	transition-timing-function: linear;
 }
 
