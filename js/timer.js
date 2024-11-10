@@ -1,7 +1,6 @@
-import { blink, renderProgressBar } from "./visuals.js";
+import { blink, restartProgressBar, updateProgressBar } from "./visuals.js";
 import { audioElements, playAudio } from "./audio.js";
 import { exercices } from "./data.js";
-import { bar } from "./visuals.js";
 
 const timerEl = document.getElementById("timer");
 const messageEl = document.getElementById("message");
@@ -15,8 +14,6 @@ let initialTime;
 let timeLeft;
 let isRunning;
 
-// bar.classList.add("notransition");
-
 export const initTimer = () => {
 	i = 0;
 	initialTime = prepareTime;
@@ -24,18 +21,15 @@ export const initTimer = () => {
 	messageEl.innerHTML = "";
 	timerEl.innerHTML = "";
 	isRunning = false;
-	bar.style.width = "0%";
-	bar.style.transition = "width 0s";
+	restartProgressBar();
 };
 
-export function startTimer() {
+export function timer() {
 	if (isRunning) {
 		messageEl.innerHTML = exercices[i];
 		timerEl.innerHTML = timeLeft;
-		bar.style.width = "100%";
-		bar.style.transition = `width ${initialTime}s linear`;
+		updateProgressBar(initialTime);
 		timeLeft--;
-		// renderProgressBar(timeLeft, initialTime);
 
 		if (timeLeft === 0) {
 			// playAudio(audioElements[1]);
@@ -47,9 +41,7 @@ export function startTimer() {
 
 		if (timeLeft <= 0) {
 			// přejde na další cvik / pauzu
-
 			i++;
-
 			// nastavení délky dalšího cviku / pauzy
 			if (exercices[i] === "break") {
 				timeLeft = breakTime;
@@ -57,32 +49,22 @@ export function startTimer() {
 				timeLeft = exerciceTime;
 			}
 			initialTime = timeLeft;
-
-			setTimeout(() => {
-				bar.style.width = "0%";
-				bar.style.transition = "width 0s";
-			}, 950);
-
+			setTimeout(restartProgressBar, 950);
 			// ukončení běhu
 			if (i > exercices.length - 1) {
 				setTimeout(initTimer, 950);
 			}
 		}
-		console.log(isRunning);
 
-		setTimeout(startTimer, 1000);
+		setTimeout(timer, 1000);
 	}
 }
 
-export function setIsRunning() {
+export function startTimer() {
 	isRunning = true;
-	bar.style.width = "100%";
-	bar.style.transition = `width ${initialTime}s linear`;
+	timer();
 }
 
 export function stopTimer() {
-	isRunning = false;
-	bar.style.width = "0%";
-	bar.style.transition = "width 0s";
-	// resetProgressBar();
+	initTimer();
 }

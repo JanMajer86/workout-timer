@@ -7,14 +7,12 @@ export const blink = (element) => {
 	}, 500);
 };
 
-export const renderProgressBar = (timeLeft, initialTime) => {
-	const progress = (1 - timeLeft / initialTime) * 100;
-	activeBar.style.width = progress + "%";
+export const restartProgressBar = () => {
+	bar.style.width = "0%";
+	bar.style.transition = "width 0s";
 };
 
-// export const resetProgressBar = () => {
-// 	activeBar.style.width = "0%";
-// 	activeBar.classList.add("notransition");
-// 	passiveBar.style.width = "0%";
-// 	passiveBar.classList.add("notransition");
-// };
+export const updateProgressBar = (time) => {
+	bar.style.width = "100%";
+	bar.style.transition = `width ${time}s linear`;
+};
