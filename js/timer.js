@@ -6,7 +6,7 @@ import { bar } from "./visuals.js";
 const timerEl = document.getElementById("timer");
 const messageEl = document.getElementById("message");
 
-const prepareTime = 5;
+const prepareTime = 4;
 const exerciceTime = 6;
 const breakTime = 3;
 
@@ -65,7 +65,7 @@ export function startTimer() {
 
 			// ukončení běhu
 			if (i > exercices.length - 1) {
-				initTimer();
+				setTimeout(initTimer, 950);
 			}
 		}
 		console.log(isRunning);

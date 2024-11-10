@@ -1,15 +1,15 @@
-const exercicesInput = [
-	"high knee taps",
-	"leg raises",
-	"hip raises",
-	"flutter kicks",
-	"plank knees to elbow",
-	"chair sit ups",
-	"seated in and outs",
-	"jumping jacks",
-];
+// const exercicesInput = [
+// 	"high knee taps",
+// 	"leg raises",
+// 	"hip raises",
+// 	"flutter kicks",
+// 	"plank knees to elbow",
+// 	"chair sit ups",
+// 	"seated in and outs",
+// 	"jumping jacks",
+// ];
 
-// const exercicesInput = ["A"];
+const exercicesInput = ["A"];
 
 const pause = "break";
 
