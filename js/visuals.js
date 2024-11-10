@@ -1,9 +1,11 @@
 const bar = document.getElementById("my-progress");
 
-export const blink = (element) => {
+export const blink = (element, scale) => {
 	element.classList.add("blink");
+	element.style.transform = `scale(${scale})`;
 	setTimeout(() => {
 		element.classList.remove("blink");
+		element.style.transform = "none";
 	}, 500);
 };
 

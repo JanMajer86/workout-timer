@@ -53,16 +53,12 @@ body {
 
 #timer {
 	font-size: 5rem;
-	transition: all 0.2s;
+	transition: all 0.3s ease-out;
 }
 
 .blink {
-	transform: scale(1.2);
+	/* transform: scale(1.2); */
 	color: orangered;
-}
-.blink-last {
-	transform: scale(1.5);
-	color: red;
 }
 
 .center {

@@ -1,5 +1,5 @@
 import { blink, restartProgressBar, updateProgressBar } from "./visuals.js";
-import { audioElements, playAudio } from "./audio.js";
+import { playAudio } from "./audio.js";
 import { exercices } from "./data.js";
 
 const timerEl = document.getElementById("timer");
@@ -33,10 +33,13 @@ export function timer() {
 
 		if (timeLeft === 0) {
 			// playAudio(audioElements[1]);
-			blink(timerEl);
+			playAudio(1);
+			blink(timerEl, 1.6);
 		} else if (timeLeft < 3) {
-			// playAudio(audioElements[0]);
-			blink(timerEl);
+			// playAudio(audioElements[0]);¨
+			playAudio(0);
+
+			blink(timerEl, 1.2);
 		}
 
 		if (timeLeft <= 0) {

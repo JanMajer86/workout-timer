@@ -8,9 +8,9 @@ const soundClips = ["./../sounds/bleep2.mp3", "./../sounds/alert.mp3"];
 	document.body.insertAdjacentHTML("afterbegin", audioMarkUp);
 })();
 
-export const audioElements = document.querySelectorAll("audio");
+const audioElements = document.querySelectorAll("audio");
 
-export const playAudio = (audioClip) => {
-	audioClip.currentTime = 0;
-	audioClip.play();
+export const playAudio = (clipNumber) => {
+	audioElements[clipNumber].currentTime = 0;
+	audioElements[clipNumber].play();
 };

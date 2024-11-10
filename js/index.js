@@ -1,4 +1,4 @@
-import { initTimer, startTimer, timer, stopTimer } from "./timer.js";
+import { initTimer, startTimer, stopTimer } from "./timer.js";
 
 const startButton = document.getElementById("start-button");
 const stopButton = document.getElementById("stop-button");
