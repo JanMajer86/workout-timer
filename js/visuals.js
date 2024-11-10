@@ -1,4 +1,4 @@
-export const bar = document.getElementById("my-progress");
+const bar = document.getElementById("my-progress");
 
 export const blink = (element) => {
 	element.classList.add("blink");
